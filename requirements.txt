@@ -1,11 +1,11 @@
-<<<<<<< HEAD
-
+#This for prompt learning
 langchain
 langchain-huggingface
 huggingface_hub
 python-dotenv
 streamlit
-=======
+
+#This is for models component learning
 # LangChain Core
 langchain
 langchain-core
@@ -32,4 +32,3 @@ python-dotenv
 # Machine Learning Utilities
 numpy
 scikit-learn
->>>>>>> 337bed881fb1ace18847f452d400c093b2146a4b

@@ -1,6 +1,6 @@
 /.env
-<<<<<<< HEAD
+#One is for prompt virtual environment
 /venv
-=======
+
+#for models ve
 /venv
->>>>>>> 337bed881fb1ace18847f452d400c093b2146a4b
