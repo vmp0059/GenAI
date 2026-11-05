@@ -20,40 +20,33 @@ llm = ChatGroq(
     # max_tokens=200
 )
 
-#template
-template=PromptTemplate(
-    template="""
-    Please summarize the research paper titled "{paper_input}" with the following specifications:
-
-    Explanation Style: {style_input}
-    Explanation Length: {length_input}
-
-    1. Mathematical Details:
-    - Include relevant mathematical equations if present in the paper.
-    - Explain the mathematical concepts using simple, intuitive code snippets where applicable.
-
-    2. Analogies:
-   - Use relatable analogies to simplify complex ideas.
-
-    If certain information is not available in the paper, respond with: "Insufficient information available" instead of guessing.
-
-    """,
-    input_variables=['paper_input', 'style_input', 'length_input']
-)
+template=load_prompt("template.json")
 
 #fill the placeholders
-prompt=template.invoke({
-    'paper_input':paper_input,
-    'style_input':style_input,
-    'length_input':length_input
-})
+# prompt=template.invoke({
+#     'paper_input':paper_input,
+#     'style_input':style_input,
+#     'length_input':length_input
+# })
+
+# if st.button("Generate"):
+#     if prompt:
+#         with st.spinner("Generating response..."):
+#             result = llm.invoke(prompt)
+
+#         st.subheader("Generated Response")
+#         st.write(result.content)
+#     else:
+#         st.warning("Please enter a prompt.")
+
 
 if st.button("Generate"):
-    if prompt:
-        with st.spinner("Generating response..."):
-            result = llm.invoke(prompt)
-
-        st.subheader("Generated Response")
-        st.write(result.content)
-    else:
-        st.warning("Please enter a prompt.")
+    chain=template| llm
+    result=chain.invoke({
+        'paper_input':paper_input,
+        'style_input':style_input,
+        'length_input':length_input
+    })
+    st.write(result.content)
+        
+    
